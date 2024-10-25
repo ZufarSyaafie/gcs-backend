@@ -11,7 +11,7 @@ async function setupWebsocket(wss) {
 		setInterval(async () => {
 			const data = await generateRandomData();
 			ws.send(JSON.stringify(data));
-		}, 1000);
+		}, 10000);
 	});
 
 	wss.on("close", () => {
