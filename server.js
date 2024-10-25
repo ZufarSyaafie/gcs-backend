@@ -1,13 +1,12 @@
 const express = require("express");
 const http = require("http");
-const cors = require("cors");
 const { setupWebsocket, generateRandomData } = require("./websocket");
 
 const app = express();
-app.use(cors());
 
 const server = http.createServer(app);
 
+// Middleware to set Access-Control-Allow-Origin header
 app.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "https://zufarsyaafie.github.io");
 	res.header("Access-Control-Allow-Methods", "GET, POST");
