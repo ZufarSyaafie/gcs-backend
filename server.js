@@ -1,6 +1,5 @@
 const express = require("express");
 const http = require("http");
-const WebSocket = require("ws");
 const cors = require("cors");
 const { setupWebsocket, generateRandomData } = require("./websocket");
 
@@ -9,8 +8,13 @@ app.use(cors());
 
 const server = http.createServer(app);
 
-const wss = new WebSocket.Server({ server });
-setupWebsocket(wss);
+const io = require("socket.io")(server, {
+	cors: {
+		origin: "http://localhost:5173",
+		methods: ["GET", "POST"],
+	},
+});
+setupWebsocket(io);
 
 app.get("/", (req, res) => {
 	const data = generateRandomData();

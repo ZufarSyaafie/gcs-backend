@@ -2,20 +2,22 @@ let previousLat = Math.random() * 90;
 let previousLon = Math.random() * 180;
 let startTime = null;
 
-function setupWebsocket(wss) {
-	wss.on("connection", (ws) => {
-		ws.on("message", (message) => {
+function setupWebsocket(io) {
+	io.on("connection", (socket) => {
+		console.log("Client connected");
+
+		socket.on("message", (message) => {
 			console.log(`Received message => ${message}`);
 		});
 
 		setInterval(async () => {
 			const data = await generateRandomData();
-			ws.send(JSON.stringify(data));
+			socket.emit("data", data);
 		}, 1000);
-	});
 
-	wss.on("close", () => {
-		console.log("Client disconnected");
+		socket.on("disconnect", () => {
+			console.log("Client disconnected");
+		});
 	});
 }
 
