@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "https://zufarsyaafie.github.io/gcs-project/",
+		origin: "https://zufarsyaafie.github.io",
 		methods: ["GET", "POST"],
 	},
 });
