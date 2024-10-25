@@ -10,15 +10,13 @@ app.use(cors());
 const server = http.createServer(app);
 
 const wss = new WebSocket.Server({ server });
-(async () => {
-	await setupWebsocket(wss);
-})();
+setupWebsocket(wss);
 
-app.get("/", async (req, res) => {
-	const data = await generateRandomData();
+app.get("/", (req, res) => {
+	const data = generateRandomData();
 	res.json(data);
 });
 
-server.listen(8080, () => {
-	console.log("Server started on http://localhost:3001");
+server.listen(5555, () => {
+	console.log("Server started on http://localhost:5555");
 });

@@ -2,9 +2,9 @@ let previousLat = Math.random() * 90;
 let previousLon = Math.random() * 180;
 let startTime = null;
 
-async function setupWebsocket(wss) {
+function setupWebsocket(wss) {
 	wss.on("connection", (ws) => {
-		ws.on("message", async (message) => {
+		ws.on("message", (message) => {
 			console.log(`Received message => ${message}`);
 		});
 
@@ -19,7 +19,7 @@ async function setupWebsocket(wss) {
 	});
 }
 
-async function generateRandomData() {
+function generateRandomData() {
 	if (startTime === null) {
 		startTime = Date.now();
 	}
