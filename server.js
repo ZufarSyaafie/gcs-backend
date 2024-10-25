@@ -19,6 +19,6 @@ app.get("/", async (req, res) => {
 	res.json(data);
 });
 
-server.listen(3001, () => {
+server.listen(8080, () => {
 	console.log("Server started on http://localhost:3001");
 });
