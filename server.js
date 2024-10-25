@@ -4,16 +4,18 @@ const cors = require("cors");
 const { setupWebsocket, generateRandomData } = require("./websocket");
 
 const app = express();
-app.use(cors());
+app.use(
+	cors({
+		origin: "*",
+		methods: ["GET"],
+	})
+);
+
+app.options("*", cors());
 
 const server = http.createServer(app);
 
-const io = require("socket.io")(server, {
-	// cors: {
-	// 	origin: "https://zufarsyaafie.github.io",
-	// 	methods: ["GET", "POST"],
-	// },
-});
+const io = require("socket.io")(server, {});
 setupWebsocket(io);
 
 app.get("/", (req, res) => {
